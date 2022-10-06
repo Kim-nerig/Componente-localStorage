@@ -104,7 +104,6 @@ export default {
       this.proyecto = "";
       this.tipo = "";
       this.urgente = false;
-    
     },
     cambiarEstado(proyecto, campo) {
       //this.proyectos[id].urgente = !this.proyectos[id].urgente;
