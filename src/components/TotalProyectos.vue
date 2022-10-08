@@ -1,5 +1,14 @@
-<template lang="">
-          <h3>Total de proyectos: {{ numeroProyectos }}</h3>
+<template lang="">  
+          
+  <div class="row my-3">
+    <div class="col-6">
+      <h3>Total de proyectos: {{ numeroProyectos }}</h3>
+    </div>
+    <div class="col-6 text-end">
+      <button @click="limpiarData" class="btn btn-warning">Limpiar proyectos</button>
+      
+    </div>
+  </div>
       <div class="table responsive">
         <table class="table table-dark table-hover">
           <thead>
@@ -29,6 +38,10 @@
               >
                 {{ proyecto.completado ? "Completado" : "Incompleto" }}
               </td>
+              <td>
+                <button @click="eliminarData(index)" class="btn btn-danger">Eliminar</button>
+              </td>
+              
             </tr>
           </tbody>
         </table>
@@ -37,6 +50,6 @@
 
 <script>
     export default {
-        props: ['numeroProyectos' , 'proyectos', 'cambiarEstado']
+        props: ['numeroProyectos' , 'proyectos', 'cambiarEstado', 'limpiarData','eliminarData' ],   
     }
 </script>

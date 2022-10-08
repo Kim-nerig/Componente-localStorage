@@ -36,9 +36,13 @@
       </form>
     </div>
     <div class="col-12 col-md-8">
-      <total-proyectos :numeroProyectos="numeroProyectos" 
+      <total-proyectos 
+      :numeroProyectos="numeroProyectos" 
       :proyectos="proyectos"
-      :cambiarEstado="cambiarEstado" />
+      :cambiarEstado="cambiarEstado"
+      :limpiarData="limpiarData" 
+      :eliminarData="eliminarData"
+      />
     </div>
   </div>
 </template>
@@ -62,7 +66,7 @@ export default {
                 completado: false,
             };
             this.proyectos.push(proyectos);
-            localStorage.setItem("proyectos", JSON.stringify(this.proyectos));
+            this.saveData();
 
             this.proyecto = "";
             this.tipo = "";
@@ -72,7 +76,21 @@ export default {
             //this.proyectos[id].urgente = !this.proyectos[id].urgente;
             //console.log(proyecto, campo);
             proyecto[campo] = !proyecto[campo];
+            localStorage.setItem("proyectos", JSON.stringify(this.proyectos));
         },
+        saveData() {
+          localStorage.setItem("proyectos", JSON.stringify(this.proyectos));
+        },
+        limpiarData() {
+          this.proyectos = [];
+            localStorage.clear();
+          },
+          eliminarData(index){
+            this.proyectos[index]="";
+            localStorage.removeItem(index);
+            this.proyectos.splice(index,1)
+            this.saveData();
+          }
     },
     computed: {
         numeroProyectos() {
